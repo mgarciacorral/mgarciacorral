@@ -68,12 +68,12 @@ I learn fastest by shipping things that solve real problems. Right now, my main 
 ## GitHub Stats
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=andreessgdp&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" height="165"/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=andreessgdp&layout=compact&theme=github_dark&hide_border=true" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api?username=mgarciacorral&show_icons=true&theme=github_dark&hide_border=true&include_all_commits=true&count_private=true" height="165"/>
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=mgarciacorral&layout=compact&theme=github_dark&hide_border=true" height="165"/>
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=andreessgdp&theme=github-dark-blue&hide_border=true" />
+  <img src="https://streak-stats.demolab.com?user=mgarciacorral&theme=github-dark-blue&hide_border=true" />
 </p>
 
 ---
@@ -82,4 +82,4 @@ I learn fastest by shipping things that solve real problems. Right now, my main 
 
 I'm always open to interesting projects, collaborations, or just talking tech and business.
 
-📬 **andriusgdp@gmail.com** · [LinkedIn](https://www.linkedin.com/in/matias-garcia-corral-8353922a9/) · [Portfolio](https://intelligex.es/) · [intelligex.es](https://intelligex.es)
+📬 **matiasgarciacorral@gmail.com** · [LinkedIn](https://www.linkedin.com/in/matias-garcia-corral-8353922a9/) · [Portfolio](https://intelligex.es/) · [intelligex.es](https://intelligex.es)
