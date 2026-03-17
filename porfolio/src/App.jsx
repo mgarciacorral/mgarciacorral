@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import profileImage from './assets/matias-profile.jpg'
+const profileImage = '/matias-garcia-corral.jpg'
 
 const navThemes = {
   default: {
@@ -54,7 +54,7 @@ const profileImageUrl = `${siteUrl}/matias-garcia-corral.jpg`
 const translations = {
   es: {
     lang: 'es',
-    title: 'Programador y Desarrollador de Software | Matias Garcia Corral',
+    title: 'Programador y Desarrollador de Software en Segovia | Matias Garcia Corral',
     brand: 'Matias Garcia Corral',
     seo: {
       title: 'Programador y Desarrollador de Software en Segovia | Matias Garcia Corral',
