@@ -20,13 +20,19 @@
   line-height: 1.6;
   font-weight: 500;
   background:
-    radial-gradient(circle at top left, rgba(214, 223, 230, 0.65), transparent 32%),
-    radial-gradient(circle at top right, rgba(220, 209, 191, 0.55), transparent 28%),
-    linear-gradient(180deg, #f7f2ea 0%, #f2ebe1 56%, #ede4d9 100%);
+    radial-gradient(circle at top left, rgba(214, 223, 230, 0.6), transparent 32%),
+    radial-gradient(circle at top right, rgba(220, 209, 191, 0.48), transparent 28%),
+    linear-gradient(180deg, #f8f3eb 0%, #f2ebe1 54%, #ede4d9 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 html {
@@ -50,9 +56,9 @@ body::before {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.22) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 78%);
-  opacity: 0.3;
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.16), transparent 78%);
+  opacity: 0.22;
 }
 
 a {
