@@ -49,6 +49,7 @@ const navThemes = {
 
 const siteUrl = 'https://mgarciacorral.com'
 const ogImageUrl = `${siteUrl}/og-image.png`
+const profileImageUrl = `${siteUrl}/matias-garcia-corral.jpg`
 
 const translations = {
   es: {
@@ -544,39 +545,54 @@ function App() {
 
     const schema = {
       '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Matias Garcia Corral',
+      '@type': 'ProfilePage',
+      name: t.seo.title,
       url: siteUrl,
-      image: ogImageUrl,
-      jobTitle:
-        language === 'es'
-          ? 'Programador y desarrollador de software en Segovia'
-          : 'Software developer in Segovia',
-      description: t.seo.description,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Segovia',
-        addressCountry: 'ES',
+      mainEntity: {
+        '@type': 'Person',
+        name: 'Matias Garcia Corral',
+        alternateName: 'Matias Garcia',
+        url: siteUrl,
+        image: profileImageUrl,
+        jobTitle:
+          language === 'es'
+            ? 'Programador y desarrollador de software en Segovia'
+            : 'Software developer in Segovia',
+        description: t.seo.description,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Segovia',
+          addressCountry: 'ES',
+        },
+        areaServed: ['Segovia', 'Castilla y Leon', 'Spain'],
+        sameAs: ['https://github.com/mgarciacorral', 'https://www.linkedin.com/in/matias-garcia-corral-8353922a9/'],
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'Universidad de Valladolid',
+        },
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Intelligex Automations',
+          url: 'https://intelligex.es',
+        },
+        knowsAbout:
+          language === 'es'
+            ? [
+                'desarrollo de software',
+                'software para empresas',
+                'desarrollo web',
+                'software a medida',
+                'automatizacion con inteligencia artificial',
+                'aplicaciones web para empresas',
+              ]
+            : [
+                'software development',
+                'custom software',
+                'web development',
+                'AI automation',
+                'business software',
+              ],
       },
-      areaServed: ['Segovia', 'Castilla y Leon', 'Spain'],
-      sameAs: ['https://github.com/mgarciacorral', 'https://www.linkedin.com/in/matias-garcia-corral-8353922a9/'],
-      knowsAbout:
-        language === 'es'
-          ? [
-              'desarrollo de software',
-              'software para empresas',
-              'desarrollo web',
-              'software a medida',
-              'automatizacion con inteligencia artificial',
-              'aplicaciones web para empresas',
-            ]
-          : [
-              'software development',
-              'custom software',
-              'web development',
-              'AI automation',
-              'business software',
-            ],
     }
 
     let schemaElement = document.head.querySelector('script[data-seo-schema="person"]')
