@@ -461,6 +461,24 @@ main::before {
   border: 1px solid rgba(56, 72, 86, 0.08);
 }
 
+.mini-stats div:nth-child(1) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(249, 244, 237, 0.64)),
+    radial-gradient(circle at top left, rgba(231, 214, 191, 0.3), transparent 44%);
+}
+
+.mini-stats div:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 242, 246, 0.64)),
+    radial-gradient(circle at top left, rgba(223, 193, 188, 0.3), transparent 44%);
+}
+
+.mini-stats div:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(241, 246, 243, 0.64)),
+    radial-gradient(circle at top left, rgba(200, 223, 208, 0.32), transparent 44%);
+}
+
 .mini-stats dt {
   font-size: 0.68rem;
   font-weight: 800;
@@ -912,6 +930,27 @@ main::before {
   transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
+.stack-card:nth-child(1) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 242, 248, 0.66)),
+    radial-gradient(circle at top right, rgba(223, 193, 188, 0.3), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(202, 217, 231, 0.16), transparent 36%);
+}
+
+.stack-card:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(241, 246, 243, 0.66)),
+    radial-gradient(circle at top right, rgba(200, 223, 208, 0.3), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(231, 214, 191, 0.16), transparent 36%);
+}
+
+.stack-card:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(242, 245, 249, 0.66)),
+    radial-gradient(circle at top right, rgba(202, 217, 231, 0.3), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(231, 214, 191, 0.18), transparent 36%);
+}
+
 .stack-card .tag-list,
 .principle-card p {
   margin-top: 18px;
@@ -967,6 +1006,30 @@ main::before {
   border: 1px solid rgba(56, 72, 86, 0.08);
   text-decoration: none;
   transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.contact-card:nth-child(1) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(242, 245, 249, 0.76)),
+    radial-gradient(circle at top left, rgba(202, 217, 231, 0.3), transparent 42%);
+}
+
+.contact-card:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(247, 242, 248, 0.76)),
+    radial-gradient(circle at top left, rgba(223, 193, 188, 0.3), transparent 42%);
+}
+
+.contact-card:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(241, 246, 243, 0.76)),
+    radial-gradient(circle at top left, rgba(200, 223, 208, 0.3), transparent 42%);
+}
+
+.contact-card:nth-child(4) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(249, 244, 237, 0.76)),
+    radial-gradient(circle at top left, rgba(231, 214, 191, 0.32), transparent 42%);
 }
 
 .contact-card span {
