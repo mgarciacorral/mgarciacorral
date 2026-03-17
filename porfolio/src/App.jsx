@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-import profileImage from './assets/matias-profile.png'
-import cvPdf from './assets/cv.pdf'
+import profileImage from './assets/matias-profile.jpg'
 
 const navThemes = {
   default: {
@@ -48,11 +47,27 @@ const navThemes = {
   },
 }
 
+const siteUrl = 'https://mgarciacorral.com'
+const ogImageUrl = `${siteUrl}/og-image.png`
+
 const translations = {
   es: {
     lang: 'es',
-    title: 'Matias Garcia Corral | Portfolio',
+    title: 'Programador y Desarrollador de Software en Segovia | Matias Garcia Corral',
     brand: 'Matias Garcia Corral',
+    seo: {
+      title: 'Programador y Desarrollador de Software en Segovia | Matias Garcia Corral',
+      description:
+        'Programador y desarrollador de software en Segovia. Desarrollo software a medida para empresas, aplicaciones web, automatizacion con IA y soluciones digitales para negocios en Segovia.',
+      keywords:
+        'programador en Segovia, desarrollador de software en Segovia, desarrollador web en Segovia, software para empresas en Segovia, software a medida en Segovia, automatizacion para empresas en Segovia, aplicaciones web para empresas, desarrollo de software para empresas, inteligencia artificial para empresas, digitalizacion de empresas en Segovia',
+      locale: 'es_ES',
+      ogTitle: 'Desarrollador de software en Segovia para empresas | Matias Garcia Corral',
+      ogDescription:
+        'Software a medida, aplicaciones web y automatizacion con IA para empresas en Segovia.',
+      ogImageAlt:
+        'Portfolio de Matias Garcia Corral, programador y desarrollador de software en Segovia para empresas.',
+    },
     navigation: [
       { label: 'Sobre mi', href: '#about' },
       { label: 'Proyectos', href: '#projects' },
@@ -72,9 +87,9 @@ const translations = {
     ],
     hero: {
       eyebrow: 'Full Stack Developer / Automatizacion con IA',
-      title: 'Software y automatizacion pensados para avanzar mas rapido.',
+      title: 'Desarrollador de software en Segovia para empresas que quieren avanzar mas rapido.',
       text:
-        'Construyo productos SaaS, flujos operativos y sistemas utiles desde una ingenieria practica y orientada a producto.',
+        'Creo software a medida, aplicaciones web y automatizacion con IA para empresas en Segovia desde una ingenieria practica y orientada a producto.',
       primaryCta: 'Contactar',
       secondaryCta: 'Ver GitHub',
       cvCta: 'Descargar CV',
@@ -116,8 +131,8 @@ const translations = {
       eyebrow: 'Sobre mi',
       title: 'Software que se gana su sitio en flujos reales',
       paragraphs: [
-        'Empece a programar con 14 años y sigo aprendiendo igual: construir, probar y mejorar.',
-        'Combino ingenieria del software, desarrollo web y automatizacion para unir interfaces limpias con backend util.',
+        'Empece a programar con 14 anos y sigo aprendiendo igual: construir, probar y mejorar software con utilidad real.',
+        'Combino ingenieria del software, desarrollo web y automatizacion para crear software para empresas en Segovia y soluciones digitales a medida.',
       ],
       notes: [
         { label: 'Aprendizaje', value: 'Construir, validar, iterar' },
@@ -221,7 +236,8 @@ const translations = {
     contact: {
       eyebrow: 'Contacto',
       title: 'Abierto a proyectos y colaboraciones',
-      text: 'Si estas construyendo producto o explorando automatizacion con IA, puedes escribirme.',
+      text:
+        'Si necesitas un desarrollador en Segovia para software a medida, aplicaciones web o automatizacion para empresas, puedes escribirme.',
       links: [
         { label: 'GitHub', value: 'mgarciacorral', href: 'https://github.com/mgarciacorral' },
         {
@@ -236,8 +252,21 @@ const translations = {
   },
   en: {
     lang: 'en',
-    title: 'Matias Garcia Corral | Portfolio',
+    title: 'Software Developer in Segovia | Matias Garcia Corral',
     brand: 'Matias Garcia Corral',
+    seo: {
+      title: 'Software Developer in Segovia | Matias Garcia Corral',
+      description:
+        'Software developer in Segovia building custom software for companies, web applications, AI automation and product-focused digital systems.',
+      keywords:
+        'software developer in Segovia, web developer in Segovia, custom software in Segovia, software for companies in Segovia, AI automation for businesses, web applications for companies, product-focused software developer',
+      locale: 'en_GB',
+      ogTitle: 'Software Developer in Segovia for companies | Matias Garcia Corral',
+      ogDescription:
+        'Custom software, web applications and AI automation for companies in Segovia.',
+      ogImageAlt:
+        'Portfolio of Matias Garcia Corral, software developer in Segovia building software for companies.',
+    },
     navigation: [
       { label: 'About', href: '#about' },
       { label: 'Projects', href: '#projects' },
@@ -257,9 +286,9 @@ const translations = {
     ],
     hero: {
       eyebrow: 'Full Stack Developer / AI Automation',
-      title: 'Software and automation designed to move teams faster.',
+      title: 'Software developer in Segovia for companies that want to move faster.',
       text:
-        'I build SaaS products, operational workflows and useful systems through practical engineering and product-minded execution.',
+        'I build custom software, web applications and AI automation for companies through practical engineering and product-minded execution.',
       primaryCta: 'Contact me',
       secondaryCta: 'View GitHub',
       cvCta: 'Download CV',
@@ -298,8 +327,8 @@ const translations = {
       eyebrow: 'About',
       title: 'Software that earns its place in real workflows',
       paragraphs: [
-        'I started programming when I was 14 and I still learn the same way: build, ship and improve.',
-        'My background combines software engineering, web development and automation to connect clean interfaces with useful backend logic.',
+        'I started programming when I was 14 and I still learn the same way: build, ship and improve software that solves real problems.',
+        'My background combines software engineering, web development and automation to build useful digital systems for companies in Segovia and beyond.',
       ],
       notes: [
         { label: 'Learning', value: 'Build, validate, iterate' },
@@ -403,7 +432,8 @@ const translations = {
     contact: {
       eyebrow: 'Contact',
       title: 'Open to projects and collaborations',
-      text: 'If you are building a product or exploring AI automation, feel free to reach out.',
+      text:
+        'If you need a software developer in Segovia for custom software, web applications or AI automation, feel free to reach out.',
       links: [
         { label: 'GitHub', value: 'mgarciacorral', href: 'https://github.com/mgarciacorral' },
         {
@@ -458,6 +488,108 @@ function App() {
     document.documentElement.lang = t.lang
     document.title = t.title
   }, [t.lang, t.title])
+
+  useEffect(() => {
+    const setMeta = (selector, attribute, value) => {
+      let element = document.head.querySelector(selector)
+
+      if (!element) {
+        element = document.createElement('meta')
+        const match = selector.match(/\[(name|property)="(.+)"\]/)
+
+        if (match) {
+          element.setAttribute(match[1], match[2])
+        }
+
+        document.head.appendChild(element)
+      }
+
+      element.setAttribute(attribute, value)
+    }
+
+    const setLink = (rel, href) => {
+      let element = document.head.querySelector(`link[rel="${rel}"]`)
+
+      if (!element) {
+        element = document.createElement('link')
+        element.setAttribute('rel', rel)
+        document.head.appendChild(element)
+      }
+
+      element.setAttribute('href', href)
+    }
+
+    setMeta('meta[name="description"]', 'content', t.seo.description)
+    setMeta('meta[name="keywords"]', 'content', t.seo.keywords)
+    setMeta('meta[name="robots"]', 'content', 'index, follow')
+    setMeta('meta[name="author"]', 'content', t.brand)
+    setMeta('meta[property="og:type"]', 'content', 'website')
+    setMeta('meta[property="og:title"]', 'content', t.seo.ogTitle)
+    setMeta('meta[property="og:description"]', 'content', t.seo.ogDescription)
+    setMeta('meta[property="og:url"]', 'content', siteUrl)
+    setMeta('meta[property="og:site_name"]', 'content', t.brand)
+    setMeta('meta[property="og:locale"]', 'content', t.seo.locale)
+    setMeta('meta[property="og:image"]', 'content', ogImageUrl)
+    setMeta('meta[property="og:image:alt"]', 'content', t.seo.ogImageAlt)
+    setMeta('meta[property="og:image:width"]', 'content', '1200')
+    setMeta('meta[property="og:image:height"]', 'content', '630')
+    setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image')
+    setMeta('meta[name="twitter:title"]', 'content', t.seo.ogTitle)
+    setMeta('meta[name="twitter:description"]', 'content', t.seo.ogDescription)
+    setMeta('meta[name="twitter:image"]', 'content', ogImageUrl)
+    setMeta('meta[name="twitter:image:alt"]', 'content', t.seo.ogImageAlt)
+    setMeta('meta[name="theme-color"]', 'content', '#f4efe7')
+    setMeta('meta[name="referrer"]', 'content', 'strict-origin-when-cross-origin')
+    setLink('canonical', siteUrl)
+
+    const schema = {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Matias Garcia Corral',
+      url: siteUrl,
+      image: ogImageUrl,
+      jobTitle:
+        language === 'es'
+          ? 'Programador y desarrollador de software en Segovia'
+          : 'Software developer in Segovia',
+      description: t.seo.description,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Segovia',
+        addressCountry: 'ES',
+      },
+      areaServed: ['Segovia', 'Castilla y Leon', 'Spain'],
+      sameAs: ['https://github.com/mgarciacorral', 'https://www.linkedin.com/in/matias-garcia-corral-8353922a9/'],
+      knowsAbout:
+        language === 'es'
+          ? [
+              'desarrollo de software',
+              'software para empresas',
+              'desarrollo web',
+              'software a medida',
+              'automatizacion con inteligencia artificial',
+              'aplicaciones web para empresas',
+            ]
+          : [
+              'software development',
+              'custom software',
+              'web development',
+              'AI automation',
+              'business software',
+            ],
+    }
+
+    let schemaElement = document.head.querySelector('script[data-seo-schema="person"]')
+
+    if (!schemaElement) {
+      schemaElement = document.createElement('script')
+      schemaElement.setAttribute('type', 'application/ld+json')
+      schemaElement.setAttribute('data-seo-schema', 'person')
+      document.head.appendChild(schemaElement)
+    }
+
+    schemaElement.textContent = JSON.stringify(schema)
+  }, [language, t.brand, t.seo])
 
   useEffect(() => {
     const revealedElements = document.querySelectorAll('[data-reveal]')
@@ -619,7 +751,7 @@ function App() {
               >
                 {t.hero.secondaryCta}
               </a>
-              <a className="button button-secondary" href={cvPdf} download="Matias-Garcia-Corral-CV.pdf">
+              <a className="button button-secondary" href="/cv.pdf" download="Matias-Garcia-Corral-CV.pdf">
                 {t.hero.cvCta}
               </a>
             </div>
@@ -628,7 +760,13 @@ function App() {
 
           <aside className="hero-card" data-reveal="true" style={{ '--reveal-delay': '0.18s' }}>
             <div className="portrait-wrap">
-              <img src={profileImage} alt="Matias Garcia Corral" />
+              <img
+                src={profileImage}
+                alt="Retrato de Matias Garcia Corral, programador y desarrollador de software en Segovia"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+              />
             </div>
             <div className="hero-card-copy">
               <p className="card-label">{t.heroCard.label}</p>
