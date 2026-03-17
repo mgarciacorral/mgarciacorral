@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
-const profileImage = '/matias-garcia-corral.jpg'
+import profileImage from './assets/matias-profile.jpg'
 
 const navThemes = {
   default: {
