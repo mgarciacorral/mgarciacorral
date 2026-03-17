@@ -92,7 +92,7 @@ const translations = {
       eyebrow: 'Sobre mi',
       title: 'Software que se gana su sitio en flujos reales',
       paragraphs: [
-        'Empece a programar con 14 anos y sigo aprendiendo igual: construir, probar y mejorar.',
+        'Empece a programar con 14 años y sigo aprendiendo igual: construir, probar y mejorar.',
         'Combino ingenieria del software, desarrollo web y automatizacion para unir interfaces limpias con backend util.',
       ],
       notes: [
