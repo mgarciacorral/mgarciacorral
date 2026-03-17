@@ -1,29 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import profileImage from './assets/matias-profile.png'
-
-const techMarks = {
-  React: 'R',
-  'Next.js': 'N',
-  TypeScript: 'TS',
-  JavaScript: 'JS',
-  HTML: 'H',
-  CSS: 'C',
-  'Tailwind CSS': 'TW',
-  'Node.js': 'Nd',
-  Express: 'Ex',
-  Python: 'Py',
-  Java: 'Jv',
-  'REST APIs': 'API',
-  'Automation workflows': 'WF',
-  MySQL: 'SQL',
-  Git: 'Gi',
-  GitHub: 'GH',
-  Docker: 'DK',
-  Linux: 'Li',
-  Capacitor: 'Cp',
-  Netlify: 'Ne',
-}
+import cvPdf from './assets/cv.pdf'
 
 const translations = {
   es: {
@@ -54,6 +32,7 @@ const translations = {
         'Construyo productos SaaS, flujos operativos y sistemas utiles desde una ingenieria practica y orientada a producto.',
       primaryCta: 'Contactar',
       secondaryCta: 'Ver GitHub',
+      cvCta: 'Descargar CV',
       highlightsLabel: 'Aspectos clave',
     },
     heroCard: {
@@ -238,6 +217,7 @@ const translations = {
         'I build SaaS products, operational workflows and useful systems through practical engineering and product-minded execution.',
       primaryCta: 'Contact me',
       secondaryCta: 'View GitHub',
+      cvCta: 'Download CV',
       highlightsLabel: 'Key highlights',
     },
     heroCard: {
@@ -525,6 +505,9 @@ function App() {
               >
                 {t.hero.secondaryCta}
               </a>
+              <a className="button button-secondary" href={cvPdf} download="Matias-Garcia-Corral-CV.pdf">
+                {t.hero.cvCta}
+              </a>
             </div>
 
             <ul className="highlight-list" aria-label={t.hero.highlightsLabel}>
@@ -674,14 +657,9 @@ function App() {
                 style={{ '--reveal-delay': `${0.1 + index * 0.08}s` }}
               >
                 <h3>{group.title}</h3>
-                <ul className="tag-list stack-tag-list" aria-label={`${group.title} tools`}>
+                <ul className="tag-list" aria-label={`${group.title} tools`}>
                   {group.items.map((item) => (
-                    <li key={item} className="stack-tag">
-                      <span className="stack-mark" aria-hidden="true">
-                        {techMarks[item] ?? item.slice(0, 2)}
-                      </span>
-                      <span>{item}</span>
-                    </li>
+                    <li key={item}>{item}</li>
                   ))}
                 </ul>
               </article>
