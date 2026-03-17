@@ -422,7 +422,7 @@ function App() {
   const [language, setLanguage] = useState('es')
   const [activeSection, setActiveSection] = useState('')
   const [hoveredNav, setHoveredNav] = useState('')
-  const [navIndicator, setNavIndicator] = useState({ width: 0, x: 0, opacity: 0 })
+  const [navIndicator, setNavIndicator] = useState({ width: 0, height: 0, x: 0, y: 0, opacity: 0 })
   const navRef = useRef(null)
   const t = translations[language]
   const headerTheme = navThemes[hoveredNav || activeSection] ?? navThemes.default
@@ -442,9 +442,14 @@ function App() {
       return
     }
 
+    const navRect = navElement.getBoundingClientRect()
+    const linkRect = targetLink.getBoundingClientRect()
+
     setNavIndicator({
-      width: targetLink.offsetWidth,
-      x: targetLink.offsetLeft,
+      width: linkRect.width,
+      height: linkRect.height,
+      x: linkRect.left - navRect.left,
+      y: linkRect.top - navRect.top,
       opacity: 1,
     })
   }
@@ -561,7 +566,8 @@ function App() {
               aria-hidden="true"
               style={{
                 width: `${navIndicator.width}px`,
-                transform: `translateX(${navIndicator.x}px)`,
+                height: `${navIndicator.height}px`,
+                transform: `translate(${navIndicator.x}px, ${navIndicator.y}px)`,
                 opacity: navIndicator.opacity,
               }}
             />
