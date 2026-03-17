@@ -12,6 +12,10 @@
   --accent-soft: #9eafbf;
   --accent-warm: #c29178;
   --accent-green: #6fa886;
+  --pastel-rose: #dfc1bc;
+  --pastel-sand: #e7d6bf;
+  --pastel-mint: #c8dfd0;
+  --pastel-sky: #cad9e7;
   --line: rgba(56, 72, 86, 0.12);
   --shadow-soft: 0 24px 60px rgba(58, 70, 80, 0.08);
   --shadow-large: 0 30px 80px rgba(58, 70, 80, 0.12);
@@ -22,8 +26,9 @@
   line-height: 1.6;
   font-weight: 500;
   background:
-    radial-gradient(circle at top left, rgba(214, 223, 230, 0.6), transparent 32%),
-    radial-gradient(circle at top right, rgba(220, 209, 191, 0.48), transparent 28%),
+    radial-gradient(circle at top left, rgba(202, 217, 231, 0.7), transparent 32%),
+    radial-gradient(circle at top right, rgba(231, 214, 191, 0.55), transparent 28%),
+    radial-gradient(circle at center left, rgba(200, 223, 208, 0.3), transparent 26%),
     linear-gradient(180deg, #f8f3eb 0%, #f2ebe1 54%, #ede4d9 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -46,7 +51,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0)),
     var(--bg);
 }
 
@@ -80,6 +85,6 @@ p {
 }
 
 ::selection {
-  background: rgba(95, 116, 137, 0.22);
+  background: rgba(194, 145, 120, 0.24);
   color: var(--text-strong);
 }

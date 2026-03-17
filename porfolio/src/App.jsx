@@ -420,7 +420,7 @@ const translations = {
 
 function App() {
   const [language, setLanguage] = useState('es')
-  const [activeSection, setActiveSection] = useState('')
+  const [activeSection, setActiveSection] = useState('about')
   const [hoveredNav, setHoveredNav] = useState('')
   const [navIndicator, setNavIndicator] = useState({ width: 0, height: 0, x: 0, y: 0, opacity: 0 })
   const navRef = useRef(null)
@@ -517,10 +517,8 @@ function App() {
     sections.forEach((section) => observer.observe(section))
 
     const firstSection = sections[0]
-    if (firstSection && window.scrollY + 160 >= firstSection.offsetTop) {
+    if (firstSection) {
       setActiveSection(firstSection.id)
-    } else {
-      setActiveSection('')
     }
 
     return () => observer.disconnect()
