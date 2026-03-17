@@ -510,11 +510,6 @@ function App() {
               </a>
             </div>
 
-            <ul className="highlight-list" aria-label={t.hero.highlightsLabel}>
-              {t.highlights.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
           </div>
 
           <aside className="hero-card" data-reveal="true" style={{ '--reveal-delay': '0.18s' }}>

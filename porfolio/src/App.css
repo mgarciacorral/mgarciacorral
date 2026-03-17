@@ -243,27 +243,44 @@ main::before {
 }
 
 .button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 52px;
-  padding: 0 20px;
+  padding: 0 22px;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(56, 72, 86, 0.1);
   font-weight: 800;
   letter-spacing: 0.02em;
   text-decoration: none;
+  overflow: hidden;
+  box-shadow:
+    0 14px 28px rgba(58, 70, 80, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
 
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 54%);
+  pointer-events: none;
+}
+
 .button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .button-primary {
   background: linear-gradient(135deg, var(--text-strong), #516b60);
   color: #f8f5ef;
-  box-shadow: 0 14px 26px rgba(36, 49, 60, 0.18);
+  border-color: rgba(71, 96, 85, 0.46);
+  box-shadow:
+    0 18px 34px rgba(36, 49, 60, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .button-primary:hover {
@@ -271,14 +288,18 @@ main::before {
 }
 
 .button-secondary {
-  background: rgba(255, 255, 255, 0.56);
-  border-color: rgba(56, 72, 86, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(250, 244, 236, 0.82)),
+    radial-gradient(circle at top left, rgba(194, 145, 120, 0.12), transparent 42%);
+  border-color: rgba(95, 116, 137, 0.18);
   color: var(--text-strong);
 }
 
 .button-secondary:hover {
-  border-color: rgba(43, 57, 69, 0.22);
-  box-shadow: 0 12px 24px rgba(58, 70, 80, 0.08);
+  border-color: rgba(95, 116, 137, 0.28);
+  box-shadow:
+    0 18px 34px rgba(58, 70, 80, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 .highlight-list,
@@ -299,7 +320,9 @@ main::before {
   padding: 10px 15px;
   border: 1px solid rgba(56, 72, 86, 0.1);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.48);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(252, 247, 240, 0.52)),
+    radial-gradient(circle at top left, rgba(194, 145, 120, 0.08), transparent 40%);
   color: var(--text-strong);
   font-size: 0.9rem;
   line-height: 1.3;
@@ -372,9 +395,10 @@ main::before {
 
 .hero-card h2 {
   margin: 0 0 14px;
-  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.35rem);
   line-height: 0.94;
   letter-spacing: -0.04em;
+  text-wrap: balance;
 }
 
 .hero-card p {
@@ -387,31 +411,36 @@ main::before {
   z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
   margin: 24px 0 0;
 }
 
 .mini-stats div {
   min-height: 100%;
-  padding: 16px;
+  padding: 14px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.56);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(250, 245, 237, 0.58)),
+    radial-gradient(circle at top left, rgba(111, 168, 134, 0.08), transparent 42%);
   border: 1px solid rgba(56, 72, 86, 0.08);
 }
 
 .mini-stats dt {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
+  line-height: 1.45;
 }
 
 .mini-stats dd {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   color: var(--text-strong);
   font-weight: 800;
-  line-height: 1.4;
+  font-size: 0.92rem;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
 }
 
 .info-ribbon,
@@ -549,7 +578,9 @@ main::before {
   padding: 18px 18px 20px;
   border: 1px solid rgba(56, 72, 86, 0.08);
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.46);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(252, 246, 239, 0.48)),
+    radial-gradient(circle at top right, rgba(194, 145, 120, 0.08), transparent 38%);
   box-shadow: 0 14px 34px rgba(58, 70, 80, 0.05);
 }
 
@@ -637,6 +668,24 @@ main::before {
 .contact-card:hover,
 .ribbon-card:hover {
   transform: translateY(-4px);
+}
+
+.project-card:nth-child(1) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.56)),
+    radial-gradient(circle at top right, rgba(111, 168, 134, 0.12), transparent 38%);
+}
+
+.project-card:nth-child(2) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.56)),
+    radial-gradient(circle at top right, rgba(95, 116, 137, 0.12), transparent 38%);
+}
+
+.project-card:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.56)),
+    radial-gradient(circle at top right, rgba(194, 145, 120, 0.12), transparent 38%);
 }
 
 .project-card:hover,
@@ -870,7 +919,9 @@ main::before {
   gap: 10px;
   padding: 20px;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(250, 245, 238, 0.72)),
+    radial-gradient(circle at top left, rgba(95, 116, 137, 0.08), transparent 40%);
   border: 1px solid rgba(56, 72, 86, 0.08);
   text-decoration: none;
   transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
