@@ -2,6 +2,29 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import profileImage from './assets/matias-profile.png'
 
+const techMarks = {
+  React: 'R',
+  'Next.js': 'N',
+  TypeScript: 'TS',
+  JavaScript: 'JS',
+  HTML: 'H',
+  CSS: 'C',
+  'Tailwind CSS': 'TW',
+  'Node.js': 'Nd',
+  Express: 'Ex',
+  Python: 'Py',
+  Java: 'Jv',
+  'REST APIs': 'API',
+  'Automation workflows': 'WF',
+  MySQL: 'SQL',
+  Git: 'Gi',
+  GitHub: 'GH',
+  Docker: 'DK',
+  Linux: 'Li',
+  Capacitor: 'Cp',
+  Netlify: 'Ne',
+}
+
 const translations = {
   es: {
     lang: 'es',
@@ -72,6 +95,11 @@ const translations = {
         'Empece a programar con 14 anos y sigo aprendiendo igual: construir, probar y mejorar.',
         'Combino ingenieria del software, desarrollo web y automatizacion para unir interfaces limpias con backend util.',
       ],
+      notes: [
+        { label: 'Aprendizaje', value: 'Construir, validar, iterar' },
+        { label: 'Enfoque', value: 'Producto, backend y automatizacion' },
+        { label: 'Base', value: 'Segovia, trabajo remoto' },
+      ],
       quote: '"La mejor forma de aprender es construir algo que tenga que funcionar fuera del sandbox."',
     },
     projects: {
@@ -105,6 +133,7 @@ const translations = {
     experience: {
       eyebrow: 'Experiencia',
       title: 'Entrega de producto y automatizacion',
+      visitLabel: 'Visitar estudio',
       items: [
         {
           role: 'Co-founder',
@@ -112,6 +141,7 @@ const translations = {
           period: 'Actualidad',
           description:
             'Escalando operaciones con automatizacion, sistemas conversacionales e infraestructura digital adaptada.',
+          href: 'https://intelligex.es',
         },
         {
           role: 'Full Stack Developer',
@@ -246,6 +276,11 @@ const translations = {
         'I started programming when I was 14 and I still learn the same way: build, ship and improve.',
         'My background combines software engineering, web development and automation to connect clean interfaces with useful backend logic.',
       ],
+      notes: [
+        { label: 'Learning', value: 'Build, validate, iterate' },
+        { label: 'Focus', value: 'Product, backend and automation' },
+        { label: 'Base', value: 'Segovia, remote-friendly' },
+      ],
       quote: '"The best way I know to learn is to build something that needs to work outside the sandbox."',
     },
     projects: {
@@ -279,6 +314,7 @@ const translations = {
     experience: {
       eyebrow: 'Experience',
       title: 'Product delivery and automation',
+      visitLabel: 'Visit studio',
       items: [
         {
           role: 'Co-founder',
@@ -286,6 +322,7 @@ const translations = {
           period: 'Current',
           description:
             'Helping businesses scale operations through automation, conversational systems and tailored digital infrastructure.',
+          href: 'https://intelligex.es',
         },
         {
           role: 'Full Stack Developer',
@@ -358,6 +395,7 @@ const translations = {
 
 function App() {
   const [language, setLanguage] = useState('es')
+  const [activeSection, setActiveSection] = useState('')
   const t = translations[language]
 
   useEffect(() => {
@@ -392,6 +430,46 @@ function App() {
     return () => observer.disconnect()
   }, [language])
 
+  useEffect(() => {
+    const sectionIds = t.navigation.map((item) => item.href.replace('#', ''))
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section) => section !== null)
+
+    if (!sections.length) {
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntries = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((first, second) => second.intersectionRatio - first.intersectionRatio)
+
+        if (!visibleEntries.length) {
+          return
+        }
+
+        setActiveSection(visibleEntries[0].target.id)
+      },
+      {
+        threshold: [0.2, 0.35, 0.55, 0.75],
+        rootMargin: '-18% 0px -55% 0px',
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    const firstSection = sections[0]
+    if (firstSection && window.scrollY + 160 >= firstSection.offsetTop) {
+      setActiveSection(firstSection.id)
+    } else {
+      setActiveSection('')
+    }
+
+    return () => observer.disconnect()
+  }, [t.navigation])
+
   return (
     <div className="page-shell">
       <header className="site-header">
@@ -402,7 +480,12 @@ function App() {
         <div className="header-controls">
           <nav className="site-nav" aria-label="Primary">
             {t.navigation.map((item) => (
-              <a key={item.href} href={item.href}>
+              <a
+                key={item.href}
+                href={item.href}
+                className={activeSection === item.href.slice(1) ? 'is-active' : ''}
+                aria-current={activeSection === item.href.slice(1) ? 'page' : undefined}
+              >
                 {item.label}
               </a>
             ))}
@@ -487,17 +570,27 @@ function App() {
         </section>
 
         <section className="content-section" id="about">
-          <div className="section-heading" data-reveal="true" style={{ '--reveal-delay': '0.08s' }}>
-            <p className="eyebrow">{t.about.eyebrow}</p>
-            <h2>{t.about.title}</h2>
-          </div>
-          <div className="about-grid">
-            <div className="about-copy" data-reveal="true" style={{ '--reveal-delay': '0.14s' }}>
-              {t.about.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
+          <div className="about-layout">
+            <div className="about-main">
+              <div className="section-heading" data-reveal="true" style={{ '--reveal-delay': '0.08s' }}>
+                <p className="eyebrow">{t.about.eyebrow}</p>
+                <h2>{t.about.title}</h2>
+              </div>
+              <div className="about-copy" data-reveal="true" style={{ '--reveal-delay': '0.14s' }}>
+                {t.about.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <div className="about-notes" data-reveal="true" style={{ '--reveal-delay': '0.2s' }}>
+                {t.about.notes.map((item) => (
+                  <article key={item.label} className="about-note">
+                    <span>{item.label}</span>
+                    <strong>{item.value}</strong>
+                  </article>
+                ))}
+              </div>
             </div>
-            <div className="quote-card" data-reveal="true" style={{ '--reveal-delay': '0.2s' }}>
+            <div className="quote-card about-quote" data-reveal="true" style={{ '--reveal-delay': '0.18s' }}>
               <p>{t.about.quote}</p>
               <span>{t.brand}</span>
             </div>
@@ -555,6 +648,12 @@ function App() {
                   <h3>{item.role}</h3>
                   <p className="timeline-company">{item.company}</p>
                   <p>{item.description}</p>
+                  {item.href ? (
+                    <a className="timeline-link" href={item.href} target="_blank" rel="noreferrer">
+                      <span>{t.experience.visitLabel}</span>
+                      <strong>intelligex.es</strong>
+                    </a>
+                  ) : null}
                 </div>
               </article>
             ))}
@@ -575,9 +674,14 @@ function App() {
                 style={{ '--reveal-delay': `${0.1 + index * 0.08}s` }}
               >
                 <h3>{group.title}</h3>
-                <ul className="tag-list" aria-label={`${group.title} tools`}>
+                <ul className="tag-list stack-tag-list" aria-label={`${group.title} tools`}>
                   {group.items.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item} className="stack-tag">
+                      <span className="stack-mark" aria-hidden="true">
+                        {techMarks[item] ?? item.slice(0, 2)}
+                      </span>
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
               </article>
