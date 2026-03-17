@@ -66,9 +66,11 @@ main::before {
   border-radius: 999px;
   background:
     linear-gradient(135deg, rgba(247, 242, 234, 0.84), rgba(243, 236, 227, 0.72)),
-    radial-gradient(circle at top left, rgba(111, 168, 134, 0.08), transparent 42%);
+    radial-gradient(circle at top left, var(--header-tint, rgba(111, 168, 134, 0.08)), transparent 42%),
+    radial-gradient(circle at bottom right, var(--header-glow, rgba(95, 116, 137, 0.06)), transparent 38%);
   backdrop-filter: blur(16px);
   box-shadow: 0 18px 40px rgba(58, 70, 80, 0.06);
+  transition: background 320ms ease, box-shadow 320ms ease, border-color 320ms ease;
 }
 
 .header-controls {
@@ -101,39 +103,66 @@ main::before {
 }
 
 .site-nav {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
+  padding: 4px;
+  border-radius: 999px;
+}
+
+.nav-highlight {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.4)),
+    linear-gradient(135deg, var(--nav-pill, rgba(95, 116, 137, 0.1)), transparent);
+  box-shadow:
+    0 12px 24px rgba(58, 70, 80, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease,
+    background 240ms ease;
+  pointer-events: none;
 }
 
 .site-nav a {
   position: relative;
+  z-index: 1;
   padding: 10px 12px;
   color: var(--text-muted);
   font-size: 0.92rem;
   font-weight: 700;
   text-decoration: none;
-  transition: color 180ms ease, transform 180ms ease;
+  border-radius: 999px;
+  transition: color 180ms ease, transform 180ms ease, letter-spacing 180ms ease;
 }
 
 .site-nav a::after {
   content: '';
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 7px;
-  height: 1px;
-  background: currentColor;
+  left: 14px;
+  right: 14px;
+  bottom: 6px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--nav-line-start, rgba(95, 116, 137, 0.95)), var(--nav-line-end, rgba(158, 175, 191, 0.72)));
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 220ms ease;
-  opacity: 0.45;
+  opacity: 0.85;
 }
 
 .site-nav a:hover {
   color: var(--text-strong);
   transform: translateY(-1px);
+  letter-spacing: 0.03em;
 }
 
 .site-nav a.is-active {
@@ -142,7 +171,7 @@ main::before {
 
 .site-nav a.is-active::after {
   transform: scaleX(1);
-  opacity: 0.8;
+  opacity: 1;
 }
 
 .site-nav a:hover::after {
@@ -1036,7 +1065,9 @@ main::before {
   .principle-card,
   .timeline-item,
   .contact-card,
-  .site-nav a {
+  .site-nav a,
+  .nav-highlight,
+  .site-header {
     transition: none;
   }
 }
@@ -1095,6 +1126,10 @@ main::before {
 
   .site-nav {
     gap: 2px;
+  }
+
+  .nav-highlight {
+    display: none;
   }
 
   .hero-section {

@@ -1,7 +1,52 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import profileImage from './assets/matias-profile.png'
 import cvPdf from './assets/cv.pdf'
+
+const navThemes = {
+  default: {
+    tint: 'rgba(95, 116, 137, 0.08)',
+    glow: 'rgba(95, 116, 137, 0.06)',
+    pill: 'rgba(95, 116, 137, 0.1)',
+    lineStart: 'rgba(95, 116, 137, 0.95)',
+    lineEnd: 'rgba(158, 175, 191, 0.72)',
+  },
+  about: {
+    tint: 'rgba(194, 145, 120, 0.12)',
+    glow: 'rgba(194, 145, 120, 0.08)',
+    pill: 'rgba(194, 145, 120, 0.12)',
+    lineStart: 'rgba(194, 145, 120, 0.95)',
+    lineEnd: 'rgba(229, 198, 178, 0.72)',
+  },
+  projects: {
+    tint: 'rgba(95, 116, 137, 0.12)',
+    glow: 'rgba(95, 116, 137, 0.08)',
+    pill: 'rgba(95, 116, 137, 0.12)',
+    lineStart: 'rgba(95, 116, 137, 0.95)',
+    lineEnd: 'rgba(158, 175, 191, 0.72)',
+  },
+  experience: {
+    tint: 'rgba(111, 168, 134, 0.12)',
+    glow: 'rgba(111, 168, 134, 0.08)',
+    pill: 'rgba(111, 168, 134, 0.12)',
+    lineStart: 'rgba(111, 168, 134, 0.95)',
+    lineEnd: 'rgba(176, 209, 187, 0.72)',
+  },
+  stack: {
+    tint: 'rgba(110, 127, 145, 0.12)',
+    glow: 'rgba(110, 127, 145, 0.08)',
+    pill: 'rgba(110, 127, 145, 0.12)',
+    lineStart: 'rgba(110, 127, 145, 0.95)',
+    lineEnd: 'rgba(190, 198, 207, 0.72)',
+  },
+  contact: {
+    tint: 'rgba(150, 138, 113, 0.12)',
+    glow: 'rgba(150, 138, 113, 0.08)',
+    pill: 'rgba(150, 138, 113, 0.12)',
+    lineStart: 'rgba(150, 138, 113, 0.95)',
+    lineEnd: 'rgba(217, 204, 182, 0.74)',
+  },
+}
 
 const translations = {
   es: {
@@ -376,7 +421,33 @@ const translations = {
 function App() {
   const [language, setLanguage] = useState('es')
   const [activeSection, setActiveSection] = useState('')
+  const [hoveredNav, setHoveredNav] = useState('')
+  const [navIndicator, setNavIndicator] = useState({ width: 0, x: 0, opacity: 0 })
+  const navRef = useRef(null)
   const t = translations[language]
+  const headerTheme = navThemes[hoveredNav || activeSection] ?? navThemes.default
+
+  const updateNavIndicator = (sectionId) => {
+    const navElement = navRef.current
+
+    if (!navElement || !sectionId) {
+      setNavIndicator((current) => ({ ...current, opacity: 0 }))
+      return
+    }
+
+    const targetLink = navElement.querySelector(`[data-nav-id="${sectionId}"]`)
+
+    if (!targetLink) {
+      setNavIndicator((current) => ({ ...current, opacity: 0 }))
+      return
+    }
+
+    setNavIndicator({
+      width: targetLink.offsetWidth,
+      x: targetLink.offsetLeft,
+      opacity: 1,
+    })
+  }
 
   useEffect(() => {
     document.documentElement.lang = t.lang
@@ -450,21 +521,60 @@ function App() {
     return () => observer.disconnect()
   }, [t.navigation])
 
+  useEffect(() => {
+    updateNavIndicator(hoveredNav || activeSection)
+  }, [hoveredNav, activeSection, language])
+
+  useEffect(() => {
+    const handleResize = () => updateNavIndicator(hoveredNav || activeSection)
+
+    window.addEventListener('resize', handleResize)
+
+    return () => window.removeEventListener('resize', handleResize)
+  }, [hoveredNav, activeSection, language])
+
   return (
     <div className="page-shell">
-      <header className="site-header">
+      <header
+        className="site-header"
+        style={{
+          '--header-tint': headerTheme.tint,
+          '--header-glow': headerTheme.glow,
+          '--nav-pill': headerTheme.pill,
+          '--nav-line-start': headerTheme.lineStart,
+          '--nav-line-end': headerTheme.lineEnd,
+        }}
+      >
         <div className="brand-mark">
           <span className="brand-dot" />
           <span>{t.brand}</span>
         </div>
         <div className="header-controls">
-          <nav className="site-nav" aria-label="Primary">
+          <nav
+            ref={navRef}
+            className="site-nav"
+            aria-label="Primary"
+            onMouseLeave={() => setHoveredNav('')}
+          >
+            <span
+              className="nav-highlight"
+              aria-hidden="true"
+              style={{
+                width: `${navIndicator.width}px`,
+                transform: `translateX(${navIndicator.x}px)`,
+                opacity: navIndicator.opacity,
+              }}
+            />
             {t.navigation.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
+                data-nav-id={item.href.slice(1)}
                 className={activeSection === item.href.slice(1) ? 'is-active' : ''}
                 aria-current={activeSection === item.href.slice(1) ? 'page' : undefined}
+                onMouseEnter={() => setHoveredNav(item.href.slice(1))}
+                onFocus={() => setHoveredNav(item.href.slice(1))}
+                onBlur={() => setHoveredNav('')}
               >
                 {item.label}
               </a>
