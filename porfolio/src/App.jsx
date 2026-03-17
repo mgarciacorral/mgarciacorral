@@ -53,7 +53,7 @@ const ogImageUrl = `${siteUrl}/og-image.png`
 const translations = {
   es: {
     lang: 'es',
-    title: 'Programador y Desarrollador de Software en Segovia | Matias Garcia Corral',
+    title: 'Programador y Desarrollador de Software | Matias Garcia Corral',
     brand: 'Matias Garcia Corral',
     seo: {
       title: 'Programador y Desarrollador de Software en Segovia | Matias Garcia Corral',
